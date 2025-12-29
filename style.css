@@ -21,28 +21,29 @@ body {
   min-height: 100vh;
 }
 
+
 .background-pattern {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  padding: 10px;
-  opacity: 0.25;
-  /* ... */
+  gap: 0;            /* Removed whitespace between circles */
+  padding: 0;        /* Removed outer padding */
+  opacity: 0.5;      /* Increased transparency to 50% */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  overflow: hidden;
 }
 
 .circle {
   width: 100%;
   aspect-ratio: 1;
   border-radius: 50%;
-  max-width: 100px;
+  max-width  max-width: 100px;
   justify-self: center;
-}
 
-
-.circle {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
 }
 
 /* Main content */

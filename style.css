@@ -22,14 +22,22 @@ body {
 }
 
 .background-pattern {
-  position: absolute;
-  inset: 0;
   display: grid;
-  grid-template-columns: repeat(20, 1fr);
-  grid-template-rows: repeat(20, 1fr);
-  z-index: 0;
-  pointer-events: none; /* mobile perf */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 10px;
+  opacity: 0.25;
+  /* ... */
 }
+
+.circle {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  max-width: 100px;
+  justify-self: center;
+}
+
 
 .circle {
   width: 100%;

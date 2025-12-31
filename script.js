@@ -8,10 +8,7 @@ let buttonText = Math.random() < 0.5 ? 'Speel!' : 'Joue !';
 buttonEl.textContent = buttonText;
 
 // --- Random hover color setup for the action button ---
-// Use the same palette family as your circles (excluding blue so it "pops" against the blue base)
 const hoverColors = ['#1D9A4E', '#E09E2A', '#C63737']; // green, yellow, red
-
-// Optional: avoid repeating the same color back-to-back
 let lastHoverColor = null;
 
 function pickHoverColor() {
@@ -25,11 +22,6 @@ function pickHoverColor() {
 
 // Randomize on mouse hover
 buttonEl.addEventListener('mouseenter', () => {
-  buttonEl.style.setProperty('--hover-color', pickHoverColor());
-});
-
-// Also randomize on keyboard focus (accessibility)
-buttonEl.addEventListener('focus', () => {
   buttonEl.style.setProperty('--hover-color', pickHoverColor());
 });
 

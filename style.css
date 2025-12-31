@@ -94,8 +94,8 @@ main {
   transition: background-color 0.3s ease, transform 0.2s ease;
   }
 .action-button:hover {
-  background-color: #1D9A4E; /* green on hover */
-  transform: scale(1.05); /* slight grow effect */
+  background-color: var(--hover-color, #1D9A4E); /* fallback = green */
+  transform: scale(1.05);
 }
 
 /* Phrase */

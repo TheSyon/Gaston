@@ -21,18 +21,26 @@ body {
   min-height: 100vh;
 }
 
-
-
 .background-pattern {
-display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(16px, 1fr)); /* or min-content */
-  gap: 0;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 0;            /* Removed whitespace between circles */
+  padding: 0;        /* Removed outer padding */
+  opacity: 0.5;      /* Increased transparency to 50% */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  overflow: hidden;
 }
 
 .circle {
-  width: 16px;       /* fixed */
-  height: 16px;      /* because aspect-ratio is now redundant */
-  border-radius:   border-radius: 50%;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  max-width: 100px;
   justify-self: center;
 
 }

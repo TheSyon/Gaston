@@ -83,7 +83,8 @@ main {
 
 /* Phrase */
 .phrase-display {
-  font-size: 2rem;
+  font-family: 'Satisfy', cursive;
+  font-size: 4rem;
   font-weight: 600;
   min-height: 2.5rem; /* prevent layout jump */
 }

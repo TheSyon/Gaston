@@ -1,3 +1,4 @@
+
 // Elements
 const phraseEl = document.getElementById('phrase');
 const buttonEl = document.getElementById('actionButton');
@@ -14,8 +15,7 @@ const group1SetB = ['Pouce', 'Index', 'Majeur', 'Annulaire', 'Auriculaire'];
 const group2SetA = ['blauw', 'geel', 'rood', 'groen'];
 const group2SetB = ['blue', 'jaune', 'rouge', 'vert'];
 
-const circleColors = ['#1D9A4E', '#2E5CA8', '#E09E2A', '#C63737'];
-
+const circleColors = ['#1D9A4E', '#2E5CA8', '#E09E2A', '#C63737']; // green, blue, yellow, red
 
 /* -------------------- Responsive background circles -------------------- */
 
@@ -39,8 +39,8 @@ function getCols() {
 
 /**
  * Render just enough circles to fill the viewport-sized grid.
+ * Colors are assigned by COLUMN → solid color columns.
  */
-
 function renderCircles() {
   const cols = getCols();
   const gap = getComputedNumber(background, '--circle-gap', 8);
@@ -48,6 +48,7 @@ function renderCircles() {
   const containerWidth = background.clientWidth;
   const containerHeight = background.clientHeight;
 
+  // Gap space between columns
   const totalGapWidth = Math.max(0, cols - 1) * gap;
   const colWidth = (containerWidth - totalGapWidth) / cols;
 
@@ -78,16 +79,16 @@ function renderCircles() {
   const children = background.children;
   for (let k = 0; k < children.length; k++) {
     const col = k % cols; // row-major placement → column = index % cols
-    const color = circle    const color = circleColors[col % circleColors.length];
+    const color = circleColors[col % circleColors.length];
     children[k].style.backgroundColor = color;
   }
+} // ← Close renderCircles()
 
 // Initial render & dynamic updates
 window.addEventListener('load', renderCircles);
 window.addEventListener('resize', renderCircles);
 const bgResizeObserver = new ResizeObserver(() => renderCircles());
 bgResizeObserver.observe(background);
-
 
 // Button handler
 buttonEl.addEventListener('click', () => {
@@ -98,7 +99,7 @@ buttonEl.addEventListener('click', () => {
   const useOption1 = Math.random() < 0.5;
   let finger, color;
 
-  if (useOption1) {
+   if (useOption1) {
     finger = group1SetA[Math.floor(Math.random() * group1SetA.length)];
     color = group2SetB[Math.floor(Math.random() * group2SetB.length)];
   } else {
@@ -107,4 +108,3 @@ buttonEl.addEventListener('click', () => {
   }
 
   phraseEl.textContent = `${finger} - ${color}`;
-});

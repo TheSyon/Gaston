@@ -104,7 +104,7 @@ buttonEl.addEventListener('click', () => {
     color = group2SetB[Math.floor(Math.random() * group2SetB.length)];
   } else {
     finger = group1SetB[Math.floor(Math.random() * group1SetB.length)];
-       color = group2SetA[Math.floor(Math.random() * group2SetA.length)];
+    color = group2    color = group2SetA[Math.floor(Math.random() * group2SetA.length)];
   }
 
   phraseEl.textContent = `${finger} - ${color}`;

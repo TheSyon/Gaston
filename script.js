@@ -16,8 +16,11 @@ const group2SetB = ['blue', 'jaune', 'rouge', 'vert'];
 
 const circleColors = ['#1D9A4E', '#2E5CA8', '#E09E2A', '#C63737'];
 
+
+/* -------------------- Responsive background circles -------------------- */
+
 /**
- * Helper to read numeric CSS custom properties (e.g., --circle-gap).
+ * Read numeric CSS custom properties (e.g., --circle-gap).
  */
 function getComputedNumber(el, prop, fallback) {
   const v = getComputedStyle(el).getPropertyValue(prop).trim();
@@ -36,7 +39,6 @@ function getCols() {
 
 /**
  * Render just enough circles to fill the viewport-sized grid.
- * Considers current columns and the grid gap.
  */
 function renderCircles() {
   const cols = getCols();
@@ -45,46 +47,38 @@ function renderCircles() {
   const containerWidth = background.clientWidth;
   const containerHeight = background.clientHeight;
 
-  // Column width = (width - total gaps) / columns
   const totalGapWidth = Math.max(0, cols - 1) * gap;
   const colWidth = (containerWidth - totalGapWidth) / cols;
 
-  // Each circle has aspect-ratio: 1 → its height equals colWidth.
-  const rowStride = colWidth + gap; // circle height + vertical gap
+  const rowStride = colWidth + gap;
   const rows = Math.ceil(containerHeight / rowStride);
 
   const needed = cols * rows;
   const current = background.childElementCount;
 
-  // If counts match, nothing to do.
   if (current === needed) return;
 
-  // Remove extra circles
   if (current > needed) {
     for (let i = current - 1; i >= needed; i--) {
       background.removeChild(background.lastChild);
     }
-    return;
+  } else {
+    const fragment = document.createDocumentFragment();
+    for (let i = current; i < needed; i++) {
+      const div = document.createElement('div');
+      div.className = 'circle';
+      div.style.backgroundColor = circleColors[i % circleColors.length];
+      fragment.appendChild(div);
+    }
+    background.appendChild(fragment);
   }
-
-  // Add missing circles
-  const fragment = document.createDocumentFragment();
-  for (let i = current; i < needed; i++) {
-    const div = document.createElement('div');
-    div.className = 'circle';
-    // cycle through your palette
-    div.style.backgroundColor = circleColors[i % circleColors.length];
-    fragment.appendChild(div);
-  }
-  background.appendChild(fragment);
 }
 
-// Run once on load, and again whenever the viewport changes.
+// Initial render & dynamic updates
 window.addEventListener('load', renderCircles);
 window.addEventListener('resize', renderCircles);
-
-// In case the background element itself changes size due to CSS/layout:
-const bgResizeObserver = new Resizeconst bgResizeObserver = new ResizeObserver(() => renderCircles());
+const bgResizeObserver = new ResizeObserver(() => renderCircles());
+bgResizeObserver.observe(background);
 
 
 // Button handler

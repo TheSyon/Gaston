@@ -31,7 +31,7 @@ buttonEl.addEventListener('mouseenter', () => {
 // Also randomize on keyboard focus (accessibility)
 buttonbuttonEl.addEventListener('focus', () => {
   buttonEl.style.setProperty('--hover-color', pickHoverColor());
-
+}
 
 // Data
 const group1SetA = ['Duim', 'Wijsvinger', 'Middelvinger', 'Ringvinger', 'Pink'];

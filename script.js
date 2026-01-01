@@ -30,7 +30,7 @@ const group1SetA = ['Duim', 'Wijsvinger', 'Middelvinger', 'Ringvinger', 'Pink'];
 const group1SetB = ['Pouce', 'Index', 'Majeur', 'Annulaire', 'Auriculaire'];
 
 const group2SetA = ['blauw', 'geel', 'rood', 'groen'];
-const group2SetB = ['blue', 'jaune', 'rouge', 'vert'];
+const group2SetB = ['bleu', 'jaune', 'rouge', 'vert'];
 
 const circleColors = ['#1D9A4E', '#2E5CA8', '#E09E2A', '#C63737']; // green, blue, yellow, red
 

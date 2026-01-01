@@ -8,7 +8,7 @@ let buttonText = Math.random() < 0.5 ? 'Speel!' : 'Joue !';
 buttonEl.textContent = buttonText;
 
 // --- Random hover color setup for the action button ---
-const hoverColors = ['#1D9A4E', '#E09E2A', '#C63737']; // green, yellow, red
+const hoverColors = ['#008d45', '#d89028', '#bd2426']; // green, yellow, red
 let lastHoverColor = null;
 
 function pickHoverColor() {

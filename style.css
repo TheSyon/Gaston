@@ -195,3 +195,29 @@ main {
   .help-close { transition: none; }
 }
 
+
+.finger-list {
+  display: inline-block;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.finger-nl {
+  display: inline-block;
+  width: 4.2em;       /* ↓ smaller */
+  text-align: right; /* aligns text toward emoji */
+}
+
+.finger-emoji {
+  display: inline-block;
+  width: 1.8em;      /* ↓ much tighter */
+  text-align: center;
+}
+
+.finger-fr {
+  display: inline-block;
+  width: 4.5em;       /* ↓ smaller */
+  text-align: left;
+}
+
+

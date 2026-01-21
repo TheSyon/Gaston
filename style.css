@@ -104,3 +104,87 @@ main {
   font-weight: 600;
   min-height: 2.5rem; /* prevent layout jump */
 }
+
+
+/* Help button (bottom-right) */
+.help-button {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 1000;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 10px;
+  background: #25408f;            /* matches your palette (blue column color) */
+  color: #fff;
+  font: inherit;                   /* same font as phrase */
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  transition: transform 0.08s ease, opacity 0.2s ease, background 0.2s ease;
+}
+.help-button:hover { background: #1e3579; }
+.help-button:active { transform: translateY(1px); }
+
+/* Modal overlay */
+.help-modal[hidden] { display: none; }
+.help-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  background: rgba(0, 0, 0, 0.45);
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+/* Modal dialog */
+.help-modal__dialog {
+  width: min(560px, 92vw);
+  background: #ffffff;
+  color: #111;
+  border-radius: 14px;
+  padding: 20px 20px 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  font: inherit;                   /* same font as phrase */
+  line-height: 1.45;
+}
+
+/* Title slightly larger than phrase */
+.help-modal__title {
+  margin: 0 0 10px;
+  font: inherit;
+  font-size: 1.25em;               /* a bit bigger */
+  color: #111;
+}
+
+/* Body text (bilingual with line break) */
+.help-modal__body {
+  font: inherit;
+  color: #222;
+}
+
+/* Footer and close button */
+.help-modal__footer {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+.help-close {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 10px;
+  background: #25408f;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.08s ease;
+}
+.help-close:hover { background: #1e3579; }
+.help-close:active { transform: translateY(1px); }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .help-button,
+  .help-close { transition: none; }
+}
+

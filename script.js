@@ -116,13 +116,11 @@ buttonEl.addEventListener('click', () => {
   const useOption1 = Math.random() < 0.5;
   let finger, color;
 
-  if (useOption1) {
-    finger = group1SetA[Math.floor(Math.random() * group1SetA.length)];
-    color = group2SetB[Math.floor(Math.random() * group2SetB.length)];
-  } else {
-    finger = group1SetB[Math.floor(Math.random() * group1SetB.length)];
-    color = group2SetA[Math.floor(Math.random() * group2SetA.length)];
-  }
+  // ✅ Minimal fix: always Dutch first, French second
+  const finger = group1SetA[Math.floor(Math.random() * group1SetA.length)];
+  const color = group2SetB[Math.floor(Math.random() * group2SetB.length)];
 
   phraseEl.textContent = `${finger} - ${color}`;
   }); // ← Close addEventListener
+
+

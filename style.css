@@ -201,6 +201,9 @@ main {
   column-gap: 0.4em;
   row-gap: 0.4em;
   justify-content: center;
+  
+  margin: 1em auto 0;
+  line-height: 1.4;
 }
 
 .finger-nl {

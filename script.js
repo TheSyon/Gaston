@@ -113,11 +113,49 @@ buttonEl.addEventListener('click', () => {
   buttonText = buttonText === 'Speel!' ? 'Joue !' : 'Speel!';
   buttonEl.textContent = buttonText;
 
-  // ✅ Minimal fix: always Dutch first, French second
+  // Minimal fix: always Dutch first, French second
   const finger = group1SetA[Math.floor(Math.random() * group1SetA.length)];
   const color = group2SetB[Math.floor(Math.random() * group2SetB.length)];
 
   phraseEl.textContent = `${finger} - ${color}`;
   }); // ← Close addEventListener
+
+
+// ----------------------------------------------------
+// Help button & modal logic
+// ----------------------------------------------------
+
+const helpButton = document.getElementById('helpButton');
+const helpModal  = document.getElementById('helpModal');
+const helpClose  = document.getElementById('helpClose');
+
+function openHelp() {
+  helpModal.hidden = false;
+  helpButton.setAttribute('aria-expanded', 'true');
+  document.documentElement.style.overflow = 'hidden';
+}
+
+function closeHelp() {
+  helpModal.hidden = true;
+  helpButton.setAttribute('aria-expanded', 'false');
+  document.documentElement.style.overflow = '';
+}
+
+helpButton.addEventListener('click', openHelp);
+helpClose.addEventListener('click', closeHelp);
+
+// NEW — close when clicking outside the dialog
+helpModal.addEventListener('click', (e) => {
+  if (e.target === helpModal) closeHelp();
+});
+
+// NEW — close on ESC key
+document.addEventListener('keydown', (e) => {
+  if (!helpModal.hidden && e.key === 'Escape') {
+    closeHelp();
+  }
+});
+
+
 
 

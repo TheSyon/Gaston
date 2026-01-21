@@ -199,6 +199,9 @@ main {
   right: 10px;
   left: auto;               /* cancels any stray 'left' elsewhere */
   z-index: 1;               /* ensure it's above title/content */
+   background: #25408f;          /* current blue */
+  color: #ffffff;               /* white “X” */
+
 
   width: 36px;
   height: 36px;

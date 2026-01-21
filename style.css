@@ -152,14 +152,6 @@ main {
 
 .help-modal__dialog {
   position: relative; /* needed for absolute-positioned close button */
-  width: min(560px, 92vw);
-  background: #ffffff;
-  color: #111;
-  border-radius: 14px;
-  padding: 20px 20px 16px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
-  font: inherit;
-  line-height: 1.45;
 }
 
 .help-modal__title {
@@ -184,19 +176,27 @@ main {
 /* =========================
    Close button (top-right, circular, SVG icon)
    ========================= */
-.help-close {
+
+/* Ensure the dialog is the positioning context on all viewports */
+.help-modal__dialog {
+  position: relative; /* required for absolute positioning below */
+}
+
+/* Stronger selector (beats earlier .help-close rules) */
+.help-modal .help-close {
   position: absolute;
   top: 10px;
   right: 10px;
+  left: auto;              /* defensively cancel any accidental 'left:' from other CSS */
 
   width: 36px;
   height: 36px;
   padding: 0;
 
-  border: none;
+  border: none !important; /* defeat button resets if any */
   border-radius: 50%;
-  background: #fff;
-  color: #25408f; /* controls SVG stroke color */
+  background: #fff;        /* circle is white */
+  color: #25408f;          /* controls SVG stroke via currentColor */
   cursor: pointer;
 
   display: inline-flex;
@@ -205,18 +205,40 @@ main {
 
   box-shadow: 0 1px 3px rgba(0,0,0,0.25);
   transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.08s ease;
+  /* If something sets background globally (e.g., via a theme var), this wins: */
+  background-image: none !important;
 }
-.help-close:hover {
+
+/* Make sure the SVG is visible and scaled correctly */
+.help-modal .help-close svg {
+  display: block;          /* avoid inline-gap quirks */
+  width: 14px;             /* keep icon crisp */
+  height: 14px;
+}
+
+/* Force the strokes to use currentColor and be visible */
+.help-modal .help-close svg path {
+  stroke: currentColor !important;
+  stroke-width: 2 !important;
+  stroke-linecap: round;
+  fill: none;              /* ensure no odd fills hide it */
+}
+
+/* Hover / Active */
+.help-modal .help-close:hover {
   background: #f2f4f8;
   box-shadow: 0 2px 6px rgba(0,0,0,0.28);
 }
-.help-close:active {
+.help-modal .help-close:active {
   transform: translateY(1px) scale(0.98);
 }
-.help-close:focus-visible {
+
+/* Keyboard focus ring */
+.help-modal .help-close:focus-visible {
   outline: 3px solid #25408f;
   outline-offset: 2px;
 }
+
 
 /* =========================
    Reduced motion

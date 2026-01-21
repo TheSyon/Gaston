@@ -121,39 +121,48 @@ buttonEl.addEventListener('click', () => {
   }); // ← Close addEventListener
 
 
+
 // ----------------------------------------------------
 // Help button & modal logic
 // ----------------------------------------------------
 
-const helpButton = document.getElementById('helpButton');
-const helpModal  = document.getElementById('helpModal');
-const helpClose  = document.getElementById('helpClose');
+document.addEventListener('DOMContentLoaded', () => {
+  const helpButton = document.getElementById('helpButton');
+  const helpModal  = document.getElementById('helpModal');
+  const helpClose  = document.getElementById('helpClose');
 
-function openHelp() {
-  helpModal.hidden = false;
-  helpButton.setAttribute('aria-expanded', 'true');
-  document.documentElement.style.overflow = 'hidden';
-}
-
-function closeHelp() {
-  helpModal.hidden = true;
-  helpButton.setAttribute('aria-expanded', 'false');
-  document.documentElement.style.overflow = '';
-}
-
-helpButton.addEventListener('click', openHelp);
-helpClose.addEventListener('click', closeHelp);
-
-// NEW — close when clicking outside the dialog
-helpModal.addEventListener('click', (e) => {
-  if (e.target === helpModal) closeHelp();
-});
-
-// NEW — close on ESC key
-document.addEventListener('keydown', (e) => {
-  if (!helpModal.hidden && e.key === 'Escape') {
-    closeHelp();
+  // Safety check (prevents crashes if HTML is missing)
+  if (!helpButton || !helpModal || !helpClose) {
+    console.warn('Help UI elements not found');
+    return;
   }
+
+  function openHelp() {
+    helpModal.hidden = false;
+    helpButton.setAttribute('aria-expanded', 'true');
+    document.documentElement.style.overflow = 'hidden';
+  }
+
+  function closeHelp() {
+    helpModal.hidden = true;
+    helpButton.setAttribute('aria-expanded', 'false');
+    document.documentElement.style.overflow = '';
+  }
+
+  helpButton.addEventListener('click', openHelp);
+  helpClose.addEventListener('click', closeHelp);
+
+  // Close when clicking the overlay
+  helpModal.addEventListener('click', (e) => {
+    if (e.target === helpModal) closeHelp();
+  });
+
+  // Close on ESC
+  document.addEventListener('keydown', (e) => {
+    if (!helpModal.hidden && e.key === 'Escape') {
+      closeHelp();
+    }
+  });
 });
 
 

@@ -135,6 +135,7 @@ main {
 .help-button:hover { background: #1e3579; }
 .help-button:active { transform: translateY(1px); }
 
+
 /* =========================
    Modal overlay + dialog
    ========================= */
@@ -144,14 +145,26 @@ main {
   position: fixed;
   inset: 0;
   z-index: 1100;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.45); /* backdrop */
   display: grid;
   place-items: center;
   padding: 16px;
 }
 
+/* White card dialog */
 .help-modal__dialog {
-  position: relative; /* needed for absolute-positioned close button */
+  position: relative;              /* anchors the close button */
+  width: min(560px, 92vw);
+  max-height: min(90vh, 720px);
+  overflow: auto;
+
+  background: #ffffff;             /* ← this is the missing white background */
+  color: #111;
+  border-radius: 14px;
+  padding: 20px 20px 16px;         /* top padding leaves space for the close btn */
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  font: inherit;
+  line-height: 1.45;
 }
 
 .help-modal__title {
@@ -166,78 +179,72 @@ main {
   color: #222;
 }
 
-/* (Optional) footer container can remain for spacing, even if no button is inside */
+/* (Optional) footer container can remain even if unused */
 .help-modal__footer {
   margin-top: 16px;
   display: flex;
   justify-content: flex-end;
 }
 
+
+
 /* =========================
    Close button (top-right, circular, SVG icon)
    ========================= */
 
-/* Ensure the dialog is the positioning context on all viewports */
-.help-modal__dialog {
-  position: relative; /* required for absolute positioning below */
-}
-
-/* Stronger selector (beats earlier .help-close rules) */
+/* Stronger selector to beat older .help-close rules if any */
 .help-modal .help-close {
   position: absolute;
   top: 10px;
   right: 10px;
-  left: auto;              /* defensively cancel any accidental 'left:' from other CSS */
+  left: auto;               /* cancels any stray 'left' elsewhere */
+  z-index: 1;               /* ensure it's above title/content */
 
   width: 36px;
   height: 36px;
   padding: 0;
 
-  border: none !important; /* defeat button resets if any */
+  border: 1px solid #e5e7eb;/* subtle border so the white circle is visible on white card */
   border-radius: 50%;
-  background: #fff;        /* circle is white */
-  color: #25408f;          /* controls SVG stroke via currentColor */
+  background: #fff;
+  color: #25408f;           /* controls SVG stroke via currentColor */
   cursor: pointer;
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
   transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.08s ease;
-  /* If something sets background globally (e.g., via a theme var), this wins: */
-  background-image: none !important;
+  background-image: none;   /* defensive reset */
 }
 
-/* Make sure the SVG is visible and scaled correctly */
 .help-modal .help-close svg {
-  display: block;          /* avoid inline-gap quirks */
-  width: 14px;             /* keep icon crisp */
+  display: block;
+  width: 14px;
   height: 14px;
 }
 
-/* Force the strokes to use currentColor and be visible */
+/* If the SVG lacked stroke inline, ensure it via CSS */
 .help-modal .help-close svg path {
-  stroke: currentColor !important;
-  stroke-width: 2 !important;
+  stroke: currentColor;
+  stroke-width: 2;
   stroke-linecap: round;
-  fill: none;              /* ensure no odd fills hide it */
+  fill: none;
 }
 
-/* Hover / Active */
 .help-modal .help-close:hover {
   background: #f2f4f8;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.28);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
 }
 .help-modal .help-close:active {
   transform: translateY(1px) scale(0.98);
 }
-
-/* Keyboard focus ring */
 .help-modal .help-close:focus-visible {
   outline: 3px solid #25408f;
   outline-offset: 2px;
 }
+
 
 
 /* =========================

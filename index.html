@@ -44,6 +44,11 @@
 <!-- Help Modal -->
 <div id="helpModal" class="help-modal" role="dialog" aria-modal="true" aria-labelledby="helpTitle" hidden>
   <div class="help-modal__dialog">
+    <button id="helpClose" class="help-close" type="button" aria-label="sluiten · fermer" title="sluiten · fermer>
+      <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+        <path d="M3 3 L11 11 M11 3 L3 11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
     <h2 id="helpTitle" class="help-modal__title">Hoe spelen · comment jouer ?</h2>
     <div class="help-modal__body" id="helpContent">
       <p>Basé sur Fingertwister. Prenez le recto de la carte et cliquez sur « Jouer !». Une couleur et un doigt apparaissent. Chacun à son tour, placez le doigt indiqué sur la bonne couleur de la carte. Celui qui n'y arrive plus perd.</p>
@@ -55,13 +60,8 @@
         <span class="finger-nl">ringvinger</span><span class="finger-emoji">💍</span><span class="finger-fr">annulaire</span>
         <span class="finger-nl">pink</span><span class="finger-emoji">🤙</span><span class="finger-fr">auriculaire</span>
       </p>
-
-    </div>
-
-    <div class="help-modal__footer">
-      <button id="helpClose" class="help-close" type="button">sluiten · fermer</button>
-    </div>
   </div>
+</div>
 </div>
 </body>
 </html>

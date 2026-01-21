@@ -112,7 +112,7 @@ main {
   right: 16px;
   bottom: 16px;
   z-index: 1000;
-  padding: 10px 14px;
+  padding: 14px 22px;
   border: none;
   border-radius: 10px;
   background: #25408f;            /* matches your palette (blue column color) */

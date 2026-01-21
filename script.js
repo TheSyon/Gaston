@@ -113,9 +113,6 @@ buttonEl.addEventListener('click', () => {
   buttonText = buttonText === 'Speel!' ? 'Joue !' : 'Speel!';
   buttonEl.textContent = buttonText;
 
-  const useOption1 = Math.random() < 0.5;
-  let finger, color;
-
   // ✅ Minimal fix: always Dutch first, French second
   const finger = group1SetA[Math.floor(Math.random() * group1SetA.length)];
   const color = group2SetB[Math.floor(Math.random() * group2SetB.length)];

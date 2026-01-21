@@ -1,4 +1,7 @@
-/* Reset / base */
+
+/* =========================
+   Reset / base
+   ========================= */
 * {
   box-sizing: border-box;
 }
@@ -15,21 +18,22 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Layout */
+/* =========================
+   Layout
+   ========================= */
 .container {
   position: relative;
   min-height: 100vh;
 }
-
 
 :root {
   --circle-gap: 8px; /* whitespace between circles */
   --cols: 6;         /* default columns on small screens */
 }
 
-@media (min-width: 480px) { :root { --cols: 8;  } }
-@media (min-width: 768px) { :root { --cols: 12; } }
-@media (min-width: 1024px){ :root { --cols: 16; } }
+@media (min-width: 480px)  { :root { --cols: 8;  } }
+@media (min-width: 768px)  { :root { --cols: 12; } }
+@media (min-width: 1024px) { :root { --cols: 16; } }
 
 .background-pattern {
   display: grid;
@@ -48,11 +52,12 @@ body {
   aspect-ratio: 1;
   border-radius: 50%;
   justify-self: center;
-   /* the JS will set backgroundColor; no need to set it here */
+  /* the JS will set backgroundColor; no need to set it here */
 }
 
-
-/* Main content */
+/* =========================
+   Main content
+   ========================= */
 main {
   position: relative;
   z-index: 1;
@@ -66,7 +71,7 @@ main {
   text-align: center;
 }
 
-/* Logo */
+/* Logo / title */
 .title {
   font-family: 'Segoe Script','Satisfy', 'Segoe Print', cursive;
   font-size: clamp(5.5rem, 20vw, 14rem);
@@ -75,7 +80,7 @@ main {
   will-change: transform; /* GPU hint */
 }
 
-/* Button */
+/* Primary action button */
 .action-button {
   font-family: 'Segoe Script','Satisfy', 'Segoe Print', cursive;
   font-size: 1.75rem;
@@ -83,17 +88,14 @@ main {
   border: none;
   border-radius: 999px;
   cursor: pointer;
-  touch-action: manipulation; /* faster taps */
-  /* New color scheme */
+  touch-action: manipulation;
   background-color: #2E5CA8; /* deep blue */
-  color: #fff; /* white text */
-  /* Add subtle shadow for depth */
+  color: #fff;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  /* Smooth hover effect */
   transition: background-color 0.3s ease, transform 0.2s ease;
-  }
+}
 .action-button:hover {
-  background-color: var(--hover-color, #25408f); /* fallback = green */
+  background-color: var(--hover-color, #25408f);
   transform: scale(1.05);
 }
 
@@ -105,24 +107,25 @@ main {
   min-height: 2.5rem; /* prevent layout jump */
 }
 
-
-/* Help button (bottom-right) */
+/* =========================
+   Floating Help button
+   ========================= */
 .help-button {
   position: fixed;
   right: 16px;
   bottom: 16px;
   z-index: 1000;
-  width: 64px;          /* equal width & height */
+  width: 64px;
   height: 64px;
-  padding: 0;           /* remove padding */
+  padding: 0;
   border: none;
   border-radius: 50%;
-  background: #25408f;            /* matches your palette (blue column color) */
+  background: #25408f;
   color: #fff;
-  font: inherit;                   /* same font as phrase */
+  font: inherit;
   font-size: 0.9em;
   cursor: pointer;
-  display: flex;        /* center the text */
+  display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -132,8 +135,11 @@ main {
 .help-button:hover { background: #1e3579; }
 .help-button:active { transform: translateY(1px); }
 
-/* Modal overlay */
+/* =========================
+   Modal overlay + dialog
+   ========================= */
 .help-modal[hidden] { display: none; }
+
 .help-modal {
   position: fixed;
   inset: 0;
@@ -144,57 +150,86 @@ main {
   padding: 16px;
 }
 
-/* Modal dialog */
 .help-modal__dialog {
+  position: relative; /* needed for absolute-positioned close button */
   width: min(560px, 92vw);
   background: #ffffff;
   color: #111;
   border-radius: 14px;
   padding: 20px 20px 16px;
   box-shadow: 0 20px 60px rgba(0,0,0,0.35);
-  font: inherit;                   /* same font as phrase */
+  font: inherit;
   line-height: 1.45;
 }
 
-/* Title slightly larger than phrase */
 .help-modal__title {
   margin: 0 0 10px;
   font: inherit;
-  font-size: 1.25em;               /* a bit bigger */
+  font-size: 1.25em;
   color: #111;
 }
 
-/* Body text (bilingual with line break) */
 .help-modal__body {
   font: inherit;
   color: #222;
 }
 
-/* Footer and close button */
+/* (Optional) footer container can remain for spacing, even if no button is inside */
 .help-modal__footer {
   margin-top: 16px;
   display: flex;
   justify-content: flex-end;
 }
-.help-close {
-  padding: 14px 20px;
-  border: none;
-  border-radius: 10px;
-  background: #d89028;
-  color: #fff;
-  font: inherit;
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.08s ease;
-}
-.help-close:hover { background: #25408f; }
-.help-close:active { transform: translateY(1px); }
 
-/* Respect reduced motion */
+/* =========================
+   Close button (top-right, circular, SVG icon)
+   ========================= */
+.help-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  width: 36px;
+  height: 36px;
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+  background: #fff;
+  color: #25408f; /* controls SVG stroke color */
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.08s ease;
+}
+.help-close:hover {
+  background: #f2f4f8;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.28);
+}
+.help-close:active {
+  transform: translateY(1px) scale(0.98);
+}
+.help-close:focus-visible {
+  outline: 3px solid #25408f;
+  outline-offset: 2px;
+}
+
+/* =========================
+   Reduced motion
+   ========================= */
 @media (prefers-reduced-motion: reduce) {
   .help-button,
-  .help-close { transition: none; }
+  .help-close,
+  .action-button { transition: none; }
 }
 
+/* =========================
+   Fingers grid (NL · emoji · FR)
+   ========================= */
 .finger-list {
   display: grid;
   grid-template-columns: max-content 1.8em max-content; /* fit content nicely */
@@ -206,17 +241,15 @@ main {
 }
 
 .finger-nl {
-  text-align: right; /* ← aligns the first column to the right */
+  text-align: right; /* first column */
 }
 
 .finger-emoji {
   text-align: center;
-  /* Optional: fix width if emojis shift */
-  width: 1.8em;
+  width: 1.8em; /* keep emojis aligned */
 }
 
 .finger-fr {
-  text-align: left;
+  text-align: left; /* third column */
 }
-
-
+``

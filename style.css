@@ -195,11 +195,12 @@ main {
   .help-close { transition: none; }
 }
 
-
 .finger-list {
-  display: inline-block;
-  margin: 0 auto;
-  line-height: 1.5;
+  display: grid;
+  grid-template-columns: auto 1.8em auto;
+  column-gap: 0.4em;
+  row-gap: 0.4em;
+  justify-content: center;
 }
 
 .finger-nl {

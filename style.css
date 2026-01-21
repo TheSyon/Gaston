@@ -201,22 +201,15 @@ main {
   z-index: 1;               /* ensure it's above title/content */
    background: #25408f;          /* current blue */
   color: #ffffff;               /* white “X” */
-
-
   width: 36px;
   height: 36px;
   padding: 0;
-
   border: 1px solid #e5e7eb;/* subtle border so the white circle is visible on white card */
   border-radius: 50%;
-  background: #fff;
-  color: #25408f;           /* controls SVG stroke via currentColor */
   cursor: pointer;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   box-shadow: 0 1px 3px rgba(0,0,0,0.15);
   transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.08s ease;
   background-image: none;   /* defensive reset */

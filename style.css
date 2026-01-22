@@ -89,7 +89,7 @@ main {
   border-radius: 999px;
   cursor: pointer;
   touch-action: manipulation;
-  background-color: #2E5CA8; /* deep blue */
+  background-color: #25408f; /* deep blue */
   color: #fff;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease, transform 0.2s ease;
@@ -120,7 +120,7 @@ main {
   padding: 0;
   border: none;
   border-radius: 50%;
-  background: #25408f;
+  background: #bd2426;
   color: #fff;
   font: inherit;
   font-size: 0.9em;
